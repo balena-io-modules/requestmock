@@ -1,6 +1,6 @@
 mockery = require 'mockery'
 { expect } = require 'chai'
-requestMock = require('../index')()
+requestMock = require('../index')
 
 mockery.enable(warnOnUnregistered: false)
 mockery.registerMock('request', requestMock)
