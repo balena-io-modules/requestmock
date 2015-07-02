@@ -9,7 +9,7 @@ exports = module.exports = (opts, cb) ->
 	if typeof opts is 'string'
 		url = opts
 	else
-		url = opts.url
+		url = opts.url ? opts.uri
 	if url.indexOf('?') != -1
 		url = url.slice(0, opts.url.indexOf('?'))
 	method = (opts.method ? 'get').toLowerCase()
