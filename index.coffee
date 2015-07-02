@@ -3,6 +3,8 @@ request = require 'request'
 defaultHandler = request
 handlers = {}
 
+## Request module methods
+
 exports = module.exports = (opts, cb) ->
 	if typeof opts is 'string'
 		url = opts
@@ -16,8 +18,34 @@ exports = module.exports = (opts, cb) ->
 	else
 		return defaultHandler(opts, cb)
 
-# calls to request "defaults" method are ignored
 exports.defaults = ->
+	return exports
+
+exports.get = (opts, cb) ->
+	opts.method = 'GET'
+	exports(opts, cb)
+
+exports.post = (opts, cb) ->
+	opts.method = 'POST'
+	exports(opts, cb)
+
+exports.head = (opts, head) ->
+	opts.method = 'HEAD'
+	exports(opts, cb)
+
+exports.put = (opts, head) ->
+	opts.method = 'PUT'
+	exports(opts, cb)
+
+exports.patch = (opts, head) ->
+	opts.method = 'PATCH'
+	exports(opts, cb)
+
+exports.del = (opts, del) ->
+	opts.method = 'DELETE'
+	exports(opts, cb)
+
+## Request mock handling methods
 
 exports.register = register = (method, url, handler) ->
 	if not handlers[url]?
@@ -30,16 +58,3 @@ exports.deregister = deregister = (method, url) ->
 		handlers[url] = {}
 	else
 		delete handlers[url][method]
-
-exports.get = get = register.bind(null, 'get')
-exports.post = post = register.bind(null, 'post')
-exports.del = del = register.bind(null, 'delete')
-exports.put = put = register.bind(null, 'put')
-exports.patch = patch = register.bind(null, 'patch')
-
-exports.all = (url, handler) ->
-	get(url, handler)
-	post(url, handler)
-	del(url, handler)
-	put(url, handler)
-	patch(url, handler)

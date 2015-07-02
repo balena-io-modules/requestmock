@@ -26,7 +26,7 @@ mockery.registerMock('request', requestMock);
 // make sure request is required after mockery is set up.
 request = require 'request';
 
-requestMock.get('http://google.com', function (opts, cb) {
+requestMock.register('get', 'http://google.com', function (opts, cb) {
 	cb(null, { statusCode: 200 }, 'get mock');
 });
 request('http://google.com', function (err, response, body) {
@@ -47,12 +47,7 @@ based on url and method.
 This is meant to be used in conjunction with [mockery](https://www.npmjs.com/package/mockery), to allow some http requests to be mocked
 and others to be executed normally, during testing.
 
-* .get(url, handler)
-* .post(url, handler)
-* .put(url, handler)
-* .patch(url, handler)
-* .del(url, handler)
-* .all(url, handler)
+* .register(method, url, handler)
 
 Setup a handler for a url. The handler will take two parameters, opts and callback, which are the same that were passed to the request module.
 
