@@ -16,6 +16,9 @@ exports = module.exports = (opts, cb) ->
 	else
 		return defaultHandler(opts, cb)
 
+# calls to request "defaults" method are ignored
+exports.defaults = ->
+
 exports.register = register = (method, url, handler) ->
 	if not handlers[url]?
 		handlers[url] = {}
