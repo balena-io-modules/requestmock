@@ -57,6 +57,12 @@ The response-like object should define the properties as needed by your modules,
 
 * .deregister([ method ], url)
 
+Remove handler for given method and url. If method is omitted, all handlers are removed.
+
+* .log(enabled)
+
+Enable or disable logging of all requests. Useful for inspecting all the outgoing requests of an application.
+
 Support
 -------
 

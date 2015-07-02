@@ -1,6 +1,7 @@
 request = require 'request'
 
 defaultHandler = request
+logEnabled = false
 handlers = {}
 
 ## Request module methods
@@ -13,6 +14,8 @@ exports = module.exports = (opts, cb) ->
 	if url.indexOf('?') != -1
 		url = url.slice(0, opts.url.indexOf('?'))
 	method = (opts.method ? 'get').toLowerCase()
+	if logEnabled
+		console.log('requestmock:', url, method, opts)
 	if handlers[url]?[method]?
 		return handlers[url][method](opts, cb)
 	else
@@ -58,3 +61,6 @@ exports.deregister = deregister = (method, url) ->
 		handlers[url] = {}
 	else
 		delete handlers[url][method]
+
+exports.log = (enabled) ->
+	logEnabled = enabled
