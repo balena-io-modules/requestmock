@@ -32,19 +32,19 @@ exports.post = (opts, cb) ->
 	opts.method = 'POST'
 	exports(opts, cb)
 
-exports.head = (opts, head) ->
+exports.head = (opts, cb) ->
 	opts.method = 'HEAD'
 	exports(opts, cb)
 
-exports.put = (opts, head) ->
+exports.put = (opts, cb) ->
 	opts.method = 'PUT'
 	exports(opts, cb)
 
-exports.patch = (opts, head) ->
+exports.patch = (opts, cb) ->
 	opts.method = 'PATCH'
 	exports(opts, cb)
 
-exports.del = (opts, del) ->
+exports.del = (opts, cb) ->
 	opts.method = 'DELETE'
 	exports(opts, cb)
 
