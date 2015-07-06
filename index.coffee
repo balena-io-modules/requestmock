@@ -12,7 +12,7 @@ exports = module.exports = (opts, cb) ->
 	else
 		url = opts.url ? opts.uri
 	if url.indexOf('?') != -1
-		url = url.slice(0, opts.url.indexOf('?'))
+		url = url.slice(0, url.indexOf('?'))
 	method = (opts.method ? 'get').toLowerCase()
 	if logEnabled
 		console.log('requestmock:', url, method, opts)

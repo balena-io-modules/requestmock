@@ -1,6 +1,6 @@
 {
   "name": "requestmock",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Module for mocking request module",
   "main": "index.js",
   "repository": {
