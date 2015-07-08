@@ -1,0 +1,3 @@
+v0.0.9
+
+* Allow "method" parameter in register and deregister to be in any-case.
