@@ -51,8 +51,8 @@ exports.del = (opts, cb) ->
 ## Request mock handling methods
 
 exports.register = register = (method, url, handler) ->
-	if not handlers[url]?
-		handlers[url] = {}
+	method = method.toLowerCase()
+	handlers[url] ?= {}
 	handlers[url][method] = handler
 
 exports.deregister = deregister = (method, url) ->
@@ -60,6 +60,7 @@ exports.deregister = deregister = (method, url) ->
 		url = method
 		handlers[url] = {}
 	else
+		method = method.toLowerCase()
 		delete handlers[url][method]
 
 exports.log = (enabled) ->
