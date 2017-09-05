@@ -7,6 +7,8 @@ mockery.registerMock('request', requestMock)
 
 request = require 'request'
 
+googleRegex = /http:\/\/google\.com\//
+
 describe 'requestMock', ->
 	describe 'register get', ->
 		it 'should register mock module for get requests', ->
@@ -50,6 +52,13 @@ describe 'requestMock', ->
 			request { url: 'http://google.com', method: 'POST' }, (err, response, body) ->
 				expect(response).to.have.property('statusCode').that.equals(206)
 				expect(body).to.equal('PoSt mock')
+	describe 'register regex url', ->
+		it 'should allow registering handlers for regex urls', ->
+			requestMock.register 'get', googleRegex, (opts, cb) ->
+				cb(null, { statusCode: 200 }, 'get regex mock')
+			request { url: 'http://google.com/', method: 'GET' }, (err, response, body) ->
+				expect(response).to.have.property('statusCode').that.equals(200)
+				expect(body).to.equal('get regex mock')
 	describe 'deregister', ->
 		it 'should allow deregistering mock handlers with any-case method', ->
 			requestMock.deregister('pOsT', 'http://google.com')
@@ -58,6 +67,11 @@ describe 'requestMock', ->
 				expect(body[0..20]).to.not.contain('mock')
 		it 'should allow deregistering mock handlers', ->
 			requestMock.deregister('http://google.com')
+			request 'http://google.com', (err, response, body) ->
+				expect(response).to.have.property('statusCode').that.equals(200)
+				expect(body[0..20]).to.not.contain('mock')
+		it 'should allow deregistering regex mock handlers', ->
+			requestMock.deregister(googleRegex)
 			request 'http://google.com', (err, response, body) ->
 				expect(response).to.have.property('statusCode').that.equals(200)
 				expect(body[0..20]).to.not.contain('mock')
