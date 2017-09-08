@@ -1,6 +1,6 @@
 {
   "name": "requestmock",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Module for mocking request module",
   "main": "index.js",
   "repository": {
@@ -15,6 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.4",
     "request": "~2.58.0"
   },
   "devDependencies": {

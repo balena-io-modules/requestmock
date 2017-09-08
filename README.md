@@ -49,7 +49,7 @@ and others to be executed normally, during testing.
 
 * .register(method, url, handler)
 
-Setup a handler for a url. The handler will take two parameters, opts and callback, which are the same that were passed to the request module.
+Setup a handler for a url. The handler will take two parameters, opts and callback, which are the same that were passed to the request module. The url can be either a string (representing an exact url) or a RegExp.
 
 The handler should call the callback function passing an error object (null if success), a response-like object, and a string (http body).
 
