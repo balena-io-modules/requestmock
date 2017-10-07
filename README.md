@@ -4,7 +4,7 @@ requestmock
 [![npm version](https://badge.fury.io/js/requestmock.svg)](http://npmjs.org/package/requestmock)
 [![dependencies](https://david-dm.org/resin-io/requestmock.png)](https://david-dm.org/resin-io/requestmock.png)
 
-Mock calls to [request](https://www.npmjs.com/package/request) module.
+Mock calls to [request](https://www.npmjs.com/package/request) module. Compatible with [request-promise](https://www.npmjs.com/package/request-promise).
 
 Installation
 ------------
@@ -17,14 +17,14 @@ Using with mockery
 ------------------
 
 ```js
-requestMock = require 'requestmock';
-mockery = require 'mockery';
+const requestMock = require('requestmock');
+const mockery = require('mockery');
 
-mockery.enable({warnOnUnregistered: false});
+mockery.enable({ warnOnUnregistered: false });
 mockery.registerMock('request', requestMock);
 
 // make sure request is required after mockery is set up.
-request = require 'request';
+const request = require('request');
 
 requestMock.register('get', 'http://google.com', function (opts, cb) {
 	cb(null, { statusCode: 200 }, 'get mock');
@@ -33,6 +33,19 @@ request('http://google.com', function (err, response, body) {
 	console.log(body == 'get mock');
 });
 ```
+
+Using with request-promise
+--------------------------
+
+Using requestMock with request-promise requires you to either rely on
+the global Promise library or specify a Promise library explicitly as
+shown below:
+
+```js
+const requestMock = require('requestmock');
+requestMock.configure({ Promise: require('some-promise-library') });
+```
+
 
 Documentation
 -------------

@@ -6,6 +6,32 @@ logEnabled = false
 fixedUrlHandlers = {}
 regexHandlers = {}
 
+config = {
+	# Using requestMock with request-promise, requires you to either rely on
+	# the global Promise library or specify a Promise library explicitly as
+	# shown below:
+	#
+	#		requestMock = require('requestmock')
+	#		requestMock.configure(Promise: require('some-promise-library'))
+	Promise: (resolver) ->
+		if global.Promise?
+			console.warn('requestmock: No Promise library specified -- using native.')
+			return new Promise(resolver)
+		else
+			throw new Error(
+				'requestmock: No Promise library specified or available -- use ' +
+				'`requestMock.configure()` to specify a Promise library.')
+}
+
+invoke = (handler, opts, cb) ->
+	fn = (callback) -> handler(opts, callback)
+	return if cb then fn(cb) else config.Promise (resolve, reject) ->
+		fn (err, res, body) ->
+			if err?
+				reject(err)
+			else
+				resolve([ res, body ])
+
 ## Request module methods
 
 exports = module.exports = (opts, cb) ->
@@ -22,14 +48,21 @@ exports = module.exports = (opts, cb) ->
 	# First look for an exact match, then scan for a matching regex handler.
 	# If no matches are found, call the default handler
 	if fixedUrlHandlers[url]?[method]?
-		return fixedUrlHandlers[url][method](opts, cb)
+		return invoke(fixedUrlHandlers[url][method], opts, cb)
 	else
 		for regexStr of regexHandlers
 			regex = new RegExp(regexStr)
 			if regex.test(url) and regexHandlers[regexStr][method]?
-				return regexHandlers[regexStr][method](opts, cb)
+				return invoke(regexHandlers[regexStr][method], opts, cb)
 
-	return defaultHandler(opts, cb)
+	return invoke(defaultHandler, opts, cb)
+
+# request-promise-core used by request-promise requires this being around.
+exports.Request = request.Request
+
+exports.configure = ({ Promise }) ->
+	config.Promise = (resolver) ->
+		return new Promise(resolver)
 
 exports.defaults = ->
 	return exports
