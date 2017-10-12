@@ -25,12 +25,22 @@ config = {
 
 invoke = (handler, opts, cb) ->
 	fn = (callback) -> handler(opts, callback)
+
 	return if cb then fn(cb) else config.Promise (resolve, reject) ->
-		fn (err, res, body) ->
+		resolver = (err, args...) ->
+			resolver.invoked = true
 			if err?
 				reject(err)
 			else
-				resolve([ res, body ])
+				resolve(if args.length > 1 then args else args[0])
+		resolver.invoked = false
+
+		try
+			maybePromise = fn(resolver)
+			if typeof maybePromise isnt 'undefined' and not resolver.invoked
+				resolver(null, maybePromise)
+		catch e
+			resolver(e)
 
 ## Request module methods
 
