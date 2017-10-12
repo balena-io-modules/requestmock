@@ -2,16 +2,15 @@
   "name": "requestmock",
   "version": "1.0.1",
   "description": "Module for mocking request module",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:resin-io/requestmock"
   },
   "author": "Aleksis Brezas <abresas@resin.io>",
   "scripts": {
-    "pretest": "./node_modules/.bin/coffeelint ./index.coffee ./test",
-    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register test/lib.coffee",
-    "prepublish": "./node_modules/.bin/coffee -c index.coffee"
+    "pretest": "coffeelint ./index.coffee ./test",
+    "test": "mocha --compilers coffee:coffee-script/register test/lib.coffee",
+    "prepublish": "npm run test && coffee -c index.coffee"
   },
   "license": "MIT",
   "dependencies": {
