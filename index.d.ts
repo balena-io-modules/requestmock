@@ -5,7 +5,7 @@ export interface ConfigurationOptions {
 }
 
 export type MockCallback = (
-	err: Error | void,
+	err: Error | null,
 	headers: request.Headers,
 	body: string,
 ) => void;
@@ -20,7 +20,7 @@ export function register(
 ): void;
 
 export function deregister(
-	method: string | void,
+	method: string | null,
 	url: string,
 ): void;
 
