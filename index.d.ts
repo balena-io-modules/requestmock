@@ -4,7 +4,11 @@ export interface ConfigurationOptions {
 	Promise: PromiseConstructorLike;
 }
 
-export type MockCallback = (err: Error, headers: request.Headers, body: string) => void;
+export type MockCallback = (
+	err: Error | void,
+	headers: request.Headers,
+	body: string,
+) => void;
 export type Handler = (opts: any, cb: MockCallback) => void;
 
 export function configure(options: ConfigurationOptions): void;
@@ -16,7 +20,7 @@ export function register(
 ): void;
 
 export function deregister(
-	method: string | null,
+	method: string | void,
 	url: string,
 ): void;
 
