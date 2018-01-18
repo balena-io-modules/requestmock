@@ -11,7 +11,8 @@
   "scripts": {
     "pretest": "coffeelint ./index.coffee ./test",
     "test": "mocha --compilers coffee:coffee-script/register test/lib.coffee",
-    "prepublish": "npm run test && coffee -c index.coffee"
+    "prepublish": "require-npm4-to-publish",
+    "prepublishOnly": "npm run test && coffee -c index.coffee"
   },
   "license": "MIT",
   "dependencies": {
@@ -24,6 +25,7 @@
     "coffee-script": "^1.12.7",
     "coffeelint": "^1.10.1",
     "mocha": "~2.2.5",
-    "mockery": "~1.4.0"
+    "mockery": "~1.4.0",
+    "require-npm4-to-publish": "^1.0.0"
   }
 }
