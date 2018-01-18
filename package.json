@@ -1,7 +1,8 @@
 {
   "name": "requestmock",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Module for mocking request module",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git@github.com:resin-io/requestmock"
@@ -14,6 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/request": "^2.0.12",
     "lodash": "^4.17.4",
     "request": "~2.58.0"
   },
