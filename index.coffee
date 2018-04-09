@@ -46,7 +46,10 @@ invoke = (handler, opts, cb) ->
 
 exports = module.exports = (opts, cb) ->
 	params = request.initParams(opts, cb)
-	{ method, uri, callback } = params
+	{ method, uri, url, callback } = params
+
+	# Request will use `url` if `uri` isn't provided
+	uri ?= url
 
 	if _.includes(uri, '?')
 		uri = uri.slice(0, uri.indexOf('?'))
