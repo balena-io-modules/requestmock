@@ -45,27 +45,26 @@ invoke = (handler, opts, cb) ->
 ## Request module methods
 
 exports = module.exports = (opts, cb) ->
-	if typeof opts is 'string'
-		url = opts
-	else
-		url = opts.url ? opts.uri
-	if url.indexOf('?') != -1
-		url = url.slice(0, url.indexOf('?'))
-	method = (opts.method ? 'get').toLowerCase()
+	params = request.initParams(opts, cb)
+	{ method, uri, callback } = params
+
+	if _.includes(uri, '?')
+		uri = uri.slice(0, uri.indexOf('?'))
+
 	if logEnabled
-		console.log('requestmock:', url, method, opts)
+		console.log('requestmock:', uri, method, opts)
 
 	# First look for an exact match, then scan for a matching regex handler.
 	# If no matches are found, call the default handler
-	if fixedUrlHandlers[url]?[method]?
-		return invoke(fixedUrlHandlers[url][method], opts, cb)
+	if fixedUrlHandlers[uri]?[method]?
+		return invoke(fixedUrlHandlers[uri][method], opts, callback)
 	else
 		for regexStr of regexHandlers
 			regex = new RegExp(regexStr)
-			if regex.test(url) and regexHandlers[regexStr][method]?
-				return invoke(regexHandlers[regexStr][method], opts, cb)
+			if regex.test(uri) and regexHandlers[regexStr][method]?
+				return invoke(regexHandlers[regexStr][method], opts, callback)
 
-	return invoke(defaultHandler, opts, cb)
+	return invoke(defaultHandler, opts, callback)
 
 # request-promise-core used by request-promise requires this being around.
 exports.Request = request.Request
