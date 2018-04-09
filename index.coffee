@@ -46,10 +46,12 @@ invoke = (handler, opts, cb) ->
 
 exports = module.exports = (opts, cb) ->
 	params = request.initParams(opts, cb)
-	{ method, uri, url, callback } = params
+	{ method = 'GET', uri, url, callback } = params
 
 	# Request will use `url` if `uri` isn't provided
 	uri ?= url
+	# Request uses upper case by default, but we store methods in lower case
+	method = method.toLowerCase()
 
 	if _.includes(uri, '?')
 		uri = uri.slice(0, uri.indexOf('?'))
