@@ -26,21 +26,30 @@ config = {
 invoke = (handler, opts, cb) ->
 	fn = (callback) -> handler(opts, callback)
 
-	return if cb then fn(cb) else config.Promise (resolve, reject) ->
-		resolver = (err, args...) ->
-			resolver.invoked = true
-			if err?
-				reject(err)
-			else
-				resolve(if args.length > 1 then args else args[0])
-		resolver.invoked = false
+	if cb
+		maybePromise = fn(cb)
+		# Handle the case that request-promise might be enabled whilst using callbacks
+		# and therefore any errors will cause an unhandled rejection warning.
+		# This is an issue because when mocking request-promise will hook into the global requestmock
+		# and apply everywhere instead of just the places request-promise is included
+		maybePromise?.catch?(_.noop)
+		return
+	else
+		return config.Promise (resolve, reject) ->
+			resolver = (err, args...) ->
+				resolver.invoked = true
+				if err?
+					reject(err)
+				else
+					resolve(if args.length > 1 then args else args[0])
+			resolver.invoked = false
 
-		try
-			maybePromise = fn(resolver)
-			if typeof maybePromise isnt 'undefined' and not resolver.invoked
-				resolver(null, maybePromise)
-		catch e
-			resolver(e)
+			try
+				maybePromise = fn(resolver)
+				if typeof maybePromise isnt 'undefined' and not resolver.invoked
+					resolver(null, maybePromise)
+			catch e
+				resolver(e)
 
 ## Request module methods
 
