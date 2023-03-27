@@ -1,0 +1,228 @@
+- commits:
+    - subject: Replace balenaCI with flowzone
+      hash: d3c66232fe78446417c63c53b01dfc77105a9100
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 1.4.1
+  title: ""
+  date: 2023-03-27T16:09:24.552Z
+- version: 1.4.0
+  date: 2018-05-01T17:20:05Z
+  commits:
+    - hash: f8752d921faff2d0547a1ce03f09a166ddb93568
+      author: Pagan Gazzard
+      footers:
+        change-type: minor
+      subject: Use a wider range for the request version so it can be deduped.
+      body: null
+- version: 1.3.2
+- date: 2018-04-19T15:33:32Z
+- commits:
+    - hash: 5d1e84efe997f23ff7c580946bb2f2a7d45498ff
+- commits:
+    - author: Pagan Gazzard
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Workaround unhandled rejections that can be thrown when mixing standard
+        request and request-promise in the same project
+- commits:
+    - body: null
+- version: 1.3.1
+- date: 2018-04-10T15:01:12Z
+- commits:
+    - hash: 5ac2ee84e0bc801dc2a2f6322c2e99a4a4bb097a
+- commits:
+    - author: Pagan Gazzard
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Fix using `url` instead of `uri` in opts, to match request's handling.
+- commits:
+    - body: null
+- commits:
+    - hash: 7fde1f58f4b4b93e3d033db82fcce93498ca6f63
+- commits:
+    - author: Pagan Gazzard
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Fix method casing
+- commits:
+    - body: null
+- version: 1.3.0
+- date: 2018-04-09T21:19:28Z
+- commits:
+    - hash: 20be1c071e2f107613a69786cb6142e272f753d3
+- commits:
+    - author: Pagan Gazzard
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - subject: Use `request.initParams` to parse the params, matching request's
+        behaviour more closely and adding support for an opts object that
+        includes a callback.
+- commits:
+    - body: null
+- version: 1.2.1
+- date: 2018-04-09T21:16:54Z
+- commits:
+    - hash: 6e3067723ba36992fe4cf8994dc997120210bb6e
+- commits:
+    - author: Pagan Gazzard
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Add automatic publishing
+- commits:
+    - body: null
+- version: 1.2.0
+- date: 2018-04-09T20:38:54Z
+- commits:
+    - hash: 3f5604fb9f8a551a5474b0e59e4c18151def82b9
+- commits:
+    - author: Cameron Diver
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Cameron Diver <cameron@resin.io>
+- commits:
+    - subject: Use null instead of the now-deprecated void for parameters
+- commits:
+    - body: null
+- commits:
+    - hash: 13fbf8428d3b9edd793db8e6f2ba88a557c74b8e
+- commits:
+    - author: Cameron Diver
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Cameron Diver <cameron@resin.io>
+- commits:
+    - subject: Use prepublishonly and require-npm4-to-publish
+- commits:
+    - body: null
+- version: 1.1.1
+- date: 2018-01-18T22:58:25Z
+- commits:
+    - hash: 3ce48ef609e9c5e952879afddb78a30bff2023a9
+- commits:
+    - author: Cameron Diver
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - footers:
+        signed-off-by: Cameron Diver <cameron@resin.io>
+- commits:
+    - subject: Make error parameter optional in handler typings
+- commits:
+    - body: null
+- version: 1.1.0
+- date: 2018-01-18T22:25:51Z
+- commits:
+    - hash: 78fa67ce44ebd2288ce2363c105b5d890fa72531
+- commits:
+    - author: Cameron Diver
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - footers:
+        signed-off-by: Cameron Diver <cameron@resin.io>
+- commits:
+    - subject: Add typings for module
+- commits:
+    - body: null
+- version: 1.0.2
+- date: 2017-10-12T20:44:38Z
+- commits:
+    - hash: 10b8af6a7c0ad5ca2b9e27eaef43668fc61d933c
+- commits:
+    - author: Akis Kesoglou
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Improved packaging
+- commits:
+    - body: |-
+        - Remove and ignore index.js
+        - Remove `main` from package.json
+        - Make sure tests are run before publishing
+        - Make sure final package includes a compiled index.js
+- version: 1.0.1
+- date: 2017-10-12T20:21:01Z
+- commits:
+    - hash: a395858ded7fa039249c3648d9b220f9e904a028
+- commits:
+    - author: Akis Kesoglou
+- commits:
+    - footers:
+        change-type: patch
+- commits:
+    - subject: Improved request-promise support
+- commits:
+    - body: request-promise can be configured to resolve the promise in various ways,
+        with different number of arguments. Take that into account and forward
+        them appropriately so that requestmock can be used in more
+        configurations.
+- version: 1.0.0
+- date: 2017-10-07T20:01:24Z
+- commits:
+    - hash: d05e6e83869c47ae7a3f891f869ab25f8bdaf9f9
+- commits:
+    - author: Akis Kesoglou
+- commits:
+    - footers:
+        change-type: major
+- commits:
+    - subject: Added compatibility with request-promise
+- commits:
+    - body: null
+- commits:
+    - hash: db910c01e91cb9355c0f45d94aa73b631b638b44
+- commits:
+    - author: Akis Kesoglou
+- commits:
+    - subject: Recompile JS with updated CoffeeScript
+- commits:
+    - body: null
+- version: 0.2.0
+- date: 2017-09-08T09:36:45Z
+- commits:
+    - hash: e4ef936e65fa8e4f2b7220bbacefc92b7b7c778a
+- commits:
+    - author: Kostas Lekkas
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - subject: Accept regex when registering urls
+- commits:
+    - body: null
+- version: 0.1.0
+- date: 2017-09-05T14:04:12Z
+- commits:
+    - hash: 20ff1b770362be6258dfe56c467c8d9e5e394444
+- commits:
+    - author: Kostas Lekkas
+- commits:
+    - footers:
+        change-type: minor
+- commits:
+    - subject: Add VersionBot
+- commits:
+    - body: null
