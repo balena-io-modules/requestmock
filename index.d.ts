@@ -6,8 +6,8 @@ export interface ConfigurationOptions {
 
 export type MockCallback = (
 	err: Error | null,
-	headers: request.Headers,
-	body: string,
+	headers?: request.Headers,
+	body?: string | object,
 ) => void;
 export type Handler = (opts: any, cb: MockCallback) => void;
 
