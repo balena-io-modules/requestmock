@@ -12,7 +12,7 @@
     "pretest": "coffeelint ./index.coffee ./test",
     "test": "mocha --compilers coffee:coffee-script/register test/lib.coffee",
     "prepublish": "require-npm4-to-publish",
-    "prepublishOnly": "npm run test && coffee -c index.coffee"
+    "prepare": "npm run test && coffee -c index.coffee"
   },
   "license": "MIT",
   "dependencies": {
