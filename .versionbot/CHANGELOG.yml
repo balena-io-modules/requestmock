@@ -1,4 +1,15 @@
 - commits:
+    - subject: Fix publishing via flowzone
+      hash: 3f101b2754db7f25194a41c1c243fdf1e299dffd
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 1.4.3
+  title: ""
+  date: 2023-03-28T16:00:10.983Z
+- commits:
     - subject: Improve typings
       hash: 2f5b4e0096b78bbe9a187a04531d4858554fcc8d
       body: ""
