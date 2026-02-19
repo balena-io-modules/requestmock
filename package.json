@@ -1,6 +1,6 @@
 {
   "name": "requestmock",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Module for mocking request module",
   "types": "index.d.ts",
   "repository": {
@@ -29,6 +29,6 @@
     "require-npm4-to-publish": "^1.0.0"
   },
   "versionist": {
-    "publishedAt": "2023-03-28T16:00:11.089Z"
+    "publishedAt": "2026-02-19T02:02:38.246Z"
   }
 }
